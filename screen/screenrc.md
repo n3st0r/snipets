@@ -44,3 +44,8 @@ bindkey "^[[1;5C" focus right
 bindkey "^[[1;5A" focus up
 bindkey "^[[1;5B" focus down
 ```
+
+sets your X clipboard to the content of screens copy buffer
+```
+bind v eval "writebuf" "exec sh -c 'exec xsel -b --display :0 -i < /tmp/screen-exchange'"
+```
