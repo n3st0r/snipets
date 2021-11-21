@@ -1,0 +1,10 @@
+
+set nocp " Use vim defaults. not vi ones
+" set bs=2 " Smart backspace in insert mode
+set backspace=indent,eol,start  " smart & powerful backspace
+" indent  allow backspacing over autoindent
+" eol     allow backspacing over line breaks (join lines)
+" start   allow backspacing over the start of insert; CTRL-W and CTRL-U stop once at the start of insert.
+set shiftwidth=4
+set expandtab     " uses spaces instead of tabs
+set softtabstop=0 " it counts n spaces using DELETE or BACKSPACE
