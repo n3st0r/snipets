@@ -4,9 +4,7 @@ Config file location: `/etc/sysconfig/cloudinit`
 
 Cloud-init output log file: `/var/log/cloud-init-output.log`
 
-#To add additional users to the instance
-
-### Setup hostname:
+# Setup hostname:
 
 ```yaml
 fqdn: myhostname.com
@@ -38,7 +36,7 @@ users:
     lock_passwd: True
 ```
 
-Change Passwords for Existing Users
+### Change Passwords for Existing Users
 ```yaml
 chpasswd:
   list: |
@@ -55,6 +53,50 @@ write_files:
     content: |
       First line.
       Second line.
+```
+
+### Example write SSH config file
+```yaml
+write_files:
+  - path: /etc/ssh/sshd_config
+    content: |
+         Port 22
+         Protocol 2
+         HostKey /etc/ssh/ssh_host_ed25519_key
+         UsePrivilegeSeparation yes
+         KeyRegenerationInterval 3600
+         ServerKeyBits 2048
+         SyslogFacility AUTH
+         LogLevel INFO
+         LoginGraceTime 120
+         PermitRootLogin no
+         StrictModes yes
+         RSAAuthentication yes
+         PubkeyAuthentication yes
+         IgnoreRhosts yes
+         RhostsRSAAuthentication no
+         HostbasedAuthentication no
+         PermitEmptyPasswords no
+         ChallengeResponseAuthentication no
+         X11Forwarding yes
+         X11DisplayOffset 10
+         PrintMotd no
+         PrintLastLog yes
+         TCPKeepAlive yes
+         AcceptEnv LANG LC_*
+         Subsystem sftp /usr/lib/openssh/sftp-server
+         UsePAM yes
+         UseDNS no
+         AllowGroups sshusers
+```
+
+### Run commands
+```yaml
+runcmd:
+  - sed -i -e '/^Port/s/^.*$/Port 4444/' /etc/ssh/sshd_config
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers demo' /etc/ssh/sshd_config
+  - restart ssh
 ```
 
 ### To update packages and install new ones:
@@ -82,3 +124,48 @@ resolv_conf:
     timeout: 1
 ```
 
+# Disk Setup and mounts the additional volumes.
+
+### Mounts
+If device does not exist at the time, an entry will still be written to /etc/fstab
+```yaml
+mounts:
+  - [ xvdb, /data,"auto","defaults,nofail", "0", "0" ]
+  - [ sdc, /opt/data ]
+```
+
+>To override the default SWAP configuration
+```yaml
+mounts:
+- [ swap, null ]
+```
+
+>To configure SWAP as file
+```yaml
+swap:
+  filename: /swap.img
+  size: "auto" # or size in bytes
+  maxsize: size in bytes
+```
+
+### Option `mount_default_fields`
+These values are used to fill in any entries in 'mounts' that are not complete.  This must be an array, and must have 6 fields.
+```yaml
+mount_default_fields: [ None, None, "auto", "defaults,nofail", "0", "2" ]
+```
+
+# setup the file system on the device
+```yaml
+fs_setup:
+ - label: data
+   filesystem: 'ext4'
+   device: '/dev/xvdb'
+   partition: auto
+runcmd:
+ - mkdir /data
+```
+
+
+# Links and docs:
+
+* [cloud-init Documentation](https://cloudinit.readthedocs.io/en/latest/)
