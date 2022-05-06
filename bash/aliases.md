@@ -8,6 +8,11 @@ Print ip output with colors
 alias ip="ip -color"
 ```
 
+Print my public IP
+```bash
+alias myip='curl ipinfo.io/ip'
+```
+
 ll - better ls
 ```bash
 alias ll="ls -lhA"
