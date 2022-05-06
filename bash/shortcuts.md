@@ -19,6 +19,10 @@ Control Keys combinations
 * `alt` + `F`/`Esc` + `F` - Moves the cursor one word forward
 * `alt` + `B`/`Esc` + `B` - Moves the cursor one word backward
 
+ALT key shortcuts
+* `ALT` + `F` - Move forward one word.
+* `ALT` + `T` - Swaps the last two words.
+
 Bash History
 * `CTRL` + `r` - Incremental reverse search of bash history
 * `ALT` + `p` - Non-incremental reverse search of bash history
