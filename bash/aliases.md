@@ -22,11 +22,6 @@ ll - better ls
 alias ll="ls -lhA"
 ```
 
-psg
-```bash
-alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-```
-
 mkcd - create a directory and enter it
 ```bash
 mkcd ()
