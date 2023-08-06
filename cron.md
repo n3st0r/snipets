@@ -4,7 +4,7 @@
 ```
 * * * * *  command_to_execute
 │ │ │ │ │
-│ │ │ │ └───────────── day of week (0 - 7) 
+│ │ │ │ └───────────── day of week (0 - 7)
 │ │ │ └───────────── month (1 - 12)
 │ │ └───────────── day of month (1 - 31)
 │ └───────────── hour (0 - 23)
@@ -17,6 +17,14 @@
 * `,`	value list separator
 * `-`	range of values
 * `/`	step values
+* @reboot	(non-standard)
+* @yearly	(non-standard)
+* @annually	(non-standard)
+* @monthly	(non-standard)
+* @weekly	(non-standard)
+* @daily	(non-standard)
+* @midnight (non-standard) - the same as daily, but at midnight
+* @hourly	(non-standard)
 
 Day of the week start from the `0` means Sunday, then `1` means Monday, and so on up to `6` means Saturday and finish with `7` as Sunday. Because different calendars/locations have different start of the week: Sunday or Monday.
 
@@ -33,4 +41,3 @@ Run command every 10 minutes
 0-59/10 * * * *          root  /bin/run-parts /etc/cron.10min
 0,10,20,30,40,50 * * * * /some/directory/command
 ```
-
