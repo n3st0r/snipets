@@ -29,7 +29,7 @@ users:
     sudo: False
     ssh_authorized_keys:
       - <ssh pub key 1>
-      - <ssh pub key 2> 
+      - <ssh pub key 2>
     plain_text_passwd: 'ubuntu'
     home: /home/ubuntu
     shell: /bin/bash
