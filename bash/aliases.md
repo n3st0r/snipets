@@ -1,3 +1,5 @@
+# Bash aliases
+[README.md - back](../README.md)
 
 ```bash
 alias free="free -mt"

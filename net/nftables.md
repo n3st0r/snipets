@@ -1,4 +1,12 @@
+# `nftables` firewall
+[README.md - back](../README.md)
+
 # Simple commands
+
+## Show all ruleset
+```bash
+nft list ruleset
+```
 
 ## Tables
 List tables
