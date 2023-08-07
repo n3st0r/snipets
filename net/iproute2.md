@@ -24,3 +24,17 @@ Show only addresses learnt via autoconfiguration:
 ```bash
 ip address show [dev ${interface}] dynamic
 ```
+
+# `iproute2` replace old net-tools
+
+| old command      | iproute2 replacement |
+| --------------- |:-------------:| -----------:|
+| `ifconfig` (interface list) | `ip link` |
+| `ifconfig` (ip configuration) | `ip addr` |
+| `ifconfig` (interface stats) | `ip -s link` |
+| `route` | `ip route` |
+| `arp` | `ip neigh` |
+| `netstat` | `ss` |
+| `netstat -g` | `ip maddr` |
+| `netstat -i` | `ip -s link` |
+| `netstat -r` | `ip route` |
