@@ -28,13 +28,19 @@ ip address show [dev ${interface}] dynamic
 # `iproute2` replace old net-tools
 
 | old command      | iproute2 replacement |
-| --------------- |:-------------:| -----------:|
-| `ifconfig` (interface list) | `ip link` |
-| `ifconfig` (ip configuration) | `ip addr` |
-| `ifconfig` (interface stats) | `ip -s link` |
-| `route` | `ip route` |
+| --------------- |:-----------|
 | `arp` | `ip neigh` |
-| `netstat` | `ss` |
+| `brctl addbr` | `ip link add ... type bridge` |
+| `brctl addif` | `ip link set master` |
+| `brctl` | `bridge` |
+| `ifconfig` (interface list) | `ip link` |
+| `ifconfig` (interface stats) | `ip -s link` |
+| `ifconfig` (ip configuration) | `ip addr` |
+| `ipmaddr` | `ip maddr` |
+| `iptunnel` | `ip tunnel` |
 | `netstat -g` | `ip maddr` |
 | `netstat -i` | `ip -s link` |
 | `netstat -r` | `ip route` |
+| `netstat` | `ss` |
+| `route` | `ip route` |
+| `tunctl` | `ip tuntap` |
